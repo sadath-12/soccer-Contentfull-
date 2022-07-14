@@ -26,6 +26,13 @@ const gallerySlug = ({settings}) => {
 
 export default gallerySlug
 
+export async function getStaticPaths(){
+    return {
+        paths:[],
+        fallback:false
+    }
+}
+
 export async function getStaticProps(){
 
     const client = createClient({
