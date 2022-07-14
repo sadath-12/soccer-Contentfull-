@@ -6,20 +6,58 @@ import "aos/dist/aos.css";
 import AOS from 'aos'
 import { createClient } from 'contentful';
 import Head from 'next/head';
+import { getContentById, getContentByType } from '../../hooks/functions';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
-const index = ({ settings }) => {
+const index = ({ settings,galarein }) => {
+
+    const [allGalleries,setAllGalleries]=useState([])
+
+    console.log(galarein)
+    const pageTitle=galarein[0].fields.title
+  const galleries = galarein.map((item) => item.fields.body[1].fields.galleries);
+  console.log(galleries)
+
+
+  useEffect(()=>{
+
+    const manageGallery=async()=>{
+        let newGallerySet = new Set()
+    for (let i=0;i<galleries[0].length;i++){
+        const galleryDataById=await getContentById(galleries[0][i].sys.id)
+        newGallerySet.add(galleryDataById)
+    }
+
+    setAllGalleries(Array.from(newGallerySet))
+
+}
+manageGallery()
+
+
+  },[allGalleries])
+
+  console.log('gallery data',allGalleries)
+   
+
     React.useEffect(() => {
         AOS.init();
     }, [])
     return (
         <Layout settings={settings}>
             <Head>
-                <title>Gllerien | FC Ataspor</title>
+                <title>{pageTitle}</title>
             </Head>
-            <div className="mt-16 min-h-[200vh] lg:min-h-screen w-full bg-themeBlack py-12 md:mt-24">
-                <h1 className='text-2xl md:text-3xl text-white mb-12 text-center lg:text-4xl'>Galerie</h1>
-                <GalleryLayout galleryData={galleryData} />
+            <div className="mt-16 min-h-[200vh] lg:min-h-screen w-full bg-themeBlack space-y-10 py-12 md:mt-24">
+            {allGalleries.map(({fields},i)=>(
+                <div className='flex flex-col'>
+                <h1 className='text-2xl md:text-3xl text-white mb-12 text-center lg:text-4xl'>{fields.displayTitle}</h1>
+                <GalleryLayout galleryData={fields} />
+                </div>
+                ))}
+
             </div>
+
         </Layout>
     )
 }
@@ -36,10 +74,17 @@ export async function getStaticProps() {
 
     //pass the identity of model type
     const res = await client.getEntries({ content_type: 'settings' })
+    const pageData = await client.getEntries({ content_type: "page" });
+    const galarein = pageData.items.filter(
+        (item) => item.fields.slug === "galerien"
+      );
 
     return {
         props: {
-            settings: res.items
+            settings: res.items,
+            galarein
+
+
         },
         // nextjs wil query the data in this time in seconds again and fetch the changes
         revalidate: 1

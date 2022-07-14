@@ -1,13 +1,16 @@
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import EventList from '../../utils/Events/EventList'
-const Events = ({ imageUrl, data }) => {
+const Events = ({ imageUrl, data }) => { 
     const [eventsData, setEventsData] = useState([])
     const { fields } = data
     useEffect(() => {
         const events = fields.body.filter(bodyItem => (bodyItem.sys.contentType.sys.id === 'bigImageTeaser' && bodyItem.fields.description != null)) || []
         setEventsData(events)
     }, [data])
+
+    console.log('eventsData',eventsData)
+
     console.log(data)
     const bigTitle = fields.body?.filter(bodyItem => (bodyItem.sys.id === '3wBxEa0dk17ZBvspl86nXA'))[0].fields.title
     const smallTitle = fields.body?.filter(bodyItem => (bodyItem.sys.id === 'WsB2MAHLSoEQqbXesfY6o'))[0].fields.title

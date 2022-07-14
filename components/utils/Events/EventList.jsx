@@ -8,7 +8,7 @@ const EventList = ({ eventsData }) => {
                 <EventItem key={i} idx={i} event={event} />
             ))}
         </div>
-    )
+    ) 
 }
 
 export default EventList

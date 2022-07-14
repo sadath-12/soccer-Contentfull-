@@ -3,8 +3,8 @@ import Image from 'next/image'
 import { MatchData } from '../../dummyData'
 import MatchTitle from '../../utils/MatchTitle'
 import MatchComponent from '../../utils/MatchComponent'
-
-const Third = ({ imageUrl, games, data, matchData }) => {
+ 
+const Third = ({imageUrl, games, data, matchData }) => {
 
     const bgImg = '/images/Home/score-banner.webp'
     const [slicedNumber, setSlicedNumber] = useState(0)
