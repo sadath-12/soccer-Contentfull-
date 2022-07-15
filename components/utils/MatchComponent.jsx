@@ -28,13 +28,13 @@ const MatchComponent = ({ match, btnColor,i ,homeData}) => {
                             data-aos-duration={`600`}
                             data-aos-delay={`600`}
                             className='text-lg md:text-xl font-semibold'>{heimMannschaft}</p>
-                        {/* <img
+                        <img
                             data-aos="fade-right"
                             data-aos-duration={`600`}
                             data-aos-delay={`500`}
-                            src={teamA.imageUrl}
+                            src={ '/images/common/logo.png'}
                             className='max-w-[6rem] min-w-[4rem]'
-                        /> */}
+                        />
 
                     </div>
                     <div className="flex items-center mx-auto w-fit px-8 space-x-4 justify-center border-2 border-themeBlue rounded-sm py-3 relative ">
@@ -45,13 +45,13 @@ const MatchComponent = ({ match, btnColor,i ,homeData}) => {
                     </div>
                     <div className='flex justify-center items-center space-x-6 w-full'>
 
-                        {/* <img
+                        <img
                             data-aos="fade-left"
                             data-aos-duration={`600`}
                             data-aos-delay={`500`}
-                            src={teamA.imageUrl}
+                            src={ '/images/common/logo.png'}
                             className='max-w-[6rem] min-w-[4rem]'
-                        />  */}
+                        /> 
                         <p
                             data-aos="fade-left"
                             data-aos-duration={`600`}
