@@ -4,8 +4,8 @@ import MatchButton from '../Buttons/MatchButton'
 import { compareAsc, format } from 'date-fns'
 import { convertToManualDate } from '../../hooks/functions'
 
-const MatchComponent = ({ match, btnColor }) => {
-    const { dateTime, heimMannschaft, ort,gastMannschaft,goalsHeim,goalsGast} = match.fields
+const MatchComponent = ({ match, btnColor,i ,homeData}) => {
+      const { dateTime, heimMannschaft, ort,gastMannschaft,goalsHeim,goalsGast} =!homeData ? match.fields : match.fields[i] 
     console.log(heimMannschaft)
 
 
@@ -71,11 +71,11 @@ const MatchComponent = ({ match, btnColor }) => {
                         className='text-sm md:text-base uppercase'>{`${ort}  ${convertToManualDate(dateTime)}`}</p>
                     <div className="grid pt-6 gap-8 items-center grid-cols-7">
                         <div className="col-span-2 flex flex-col space-y-5">
-                            {/* <img
+                            <img
                                 data-aos="fade-right"
                                 data-aos-duration={`600`}
                                 data-aos-delay={`500`}
-                                src={teamA.imageUrl} /> */}
+                                src={ '/images/common/logo.png'} />
                             <p
                                 data-aos="fade-right"
                                 data-aos-duration={`600`}
@@ -88,11 +88,11 @@ const MatchComponent = ({ match, btnColor }) => {
                             <p className='text-themeBlue text-xl md:text-2xl font-semibold'>{goalsGast}</p>
                         </div>
                         <div className="col-span-2 flex flex-col space-y-5">
-                            {/* <img
+                            <img
                                 data-aos="fade-left"
                                 data-aos-duration={`600`}
                                 data-aos-delay={`500`}
-                                src={teamB.imageUrl} /> */}
+                                src={ '/images/common/logo.png'} />
                             <p
                                 data-aos="fade-left"
                                 data-aos-duration={`600`}

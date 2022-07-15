@@ -19,14 +19,14 @@ export async function getStaticProps() {
   //pass the identity of model type
   const res = await client.getEntries({ content_type: 'settings' })
   const sliderData = await client.getEntry({ content_type: 'slider' })
-  const gamesData = await client.getEntry({ content_type: 'games' })
+  const gameData = await client.getEntries({ content_type: "games" });
 
 
   return {
     props: {
       settings: res.items,
       sliderData: sliderData,
-      gamesData
+      gameData:gameData.items
     },
     // nextjs wil query the data in this time in seconds again and fetch the changes
     revalidate: 1,
@@ -36,7 +36,10 @@ export async function getStaticProps() {
 
 //pass the identity of model type
 
-const Index = ({ settings, gamesData, sliderData }) => {
+const Index = ({ settings, gameData, sliderData }) => {
+
+console.log('gamesD',gameData)
+
   React.useEffect(() => {
     AOS.init();
   }, [])
@@ -54,8 +57,8 @@ const Index = ({ settings, gamesData, sliderData }) => {
         <div className="mt-[100vh] ">
           <Sponsors data={sliderData} />
           {/* //sliderData contains all the data of this page  */}
-          <Third games={gamesData} data={sliderData} matchData={HomeMatchData} imageUrl='/images/Home/third.png' />
-          <Third games={gamesData} data={sliderData} matchData={HomeMatchData} imageUrl='/images/Home/fourth.png' />
+           {/* <Third   matchData={gameData} imageUrl='/images/Home/third.png' /> */}
+          {/* <Third   matchData={gameData} imageUrl='/images/Home/fourth.png' />  */}
           <Events data={sliderData} imageUrl='/images/Home/events.png' />
         </div>
       </Layout>

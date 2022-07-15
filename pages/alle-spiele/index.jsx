@@ -158,6 +158,7 @@ const Games = ({ settings, games }) => {
                             <MatchComponent
                               key={i}
                               match={match}
+                              i={i}
                               btnColor="bg-themeBlue"
                             />
                           </div>
@@ -173,6 +174,7 @@ const Games = ({ settings, games }) => {
                         >
                           <MatchComponent
                             key={i}
+                            i={i}
                             match={match}
                             btnColor="bg-themeBlue"
                           />
