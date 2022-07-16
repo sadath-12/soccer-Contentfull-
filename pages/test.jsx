@@ -1,6 +1,6 @@
 import { createClient } from 'contentful'
 import React from 'react'
-import { getContentById } from '../hooks/functions'
+import { getContentById, getContentByType } from '../hooks/functions'
 
 export async function getStaticProps() {
 
@@ -9,13 +9,15 @@ export async function getStaticProps() {
       accessToken: process.env.CONTENTFUL_ACCESS_KEY,
     })
     //pass the identity of model type
-    const res = await getContentById('2haOGbw0nRaE73GwLBaUui')
+    const res = await getContentByType('galleryGrid')
+    const resById = await getContentById('6kySxPGfBPZXhPv6MVL4ur')
 
   
   
     return {
       props: {
-       pageData:res
+       pageData:res,
+       resById
       },
       // nextjs wil query the data in this time in seconds again and fetch the changes
       revalidate: 1,
@@ -23,8 +25,9 @@ export async function getStaticProps() {
   
   }
 
-const Test = ({pageData}) => {
+const Test = ({pageData,resById}) => {
     console.log(pageData)
+    console.log(resById)
   return (
     <div>Test</div>
   )
