@@ -5,10 +5,12 @@ import { compareAsc, format } from 'date-fns'
 import { convertToManualDate } from '../../hooks/functions'
 
 const MatchComponent = ({ match, btnColor,i ,homeData}) => {
-      const { dateTime, heimMannschaft, ort,gastMannschaft,goalsHeim,goalsGast} =!homeData ? match.fields : match.fields[i] 
+    //   const { dateTime, heimMannschaft, ort,gastMannschaft,goalsHeim,goalsGast} = match.fields 
+      const { dateTime, heimMannschaft, ort,gastMannschaft,goalsHeim,goalsGast} = match.fields 
+    //   const { dateTime, heimMannschaft, ort,gastMannschaft,goalsHeim,goalsGast} =!homeData ? match.fields : match.fields[i] 
     console.log(heimMannschaft)
 
-
+console.log('match',match)
    
 
 

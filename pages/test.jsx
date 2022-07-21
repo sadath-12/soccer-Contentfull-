@@ -9,8 +9,10 @@ export async function getStaticProps() {
       accessToken: process.env.CONTENTFUL_ACCESS_KEY,
     })
     //pass the identity of model type
-    const res = await getContentByType('galleryGrid')
-    const resById = await getContentById('6kySxPGfBPZXhPv6MVL4ur')
+    const res = await getContentByType('games')
+    const resById =await getContentByType('gamesGrid')
+
+
 
   
   
@@ -18,6 +20,7 @@ export async function getStaticProps() {
       props: {
        pageData:res,
        resById
+   
       },
       // nextjs wil query the data in this time in seconds again and fetch the changes
       revalidate: 1,
@@ -26,8 +29,17 @@ export async function getStaticProps() {
   }
 
 const Test = ({pageData,resById}) => {
-    console.log(pageData)
-    console.log(resById)
+
+
+  let newGames=[]
+
+for(let i =0 ; i<resById.length;i++){
+ 
+}
+
+    console.log( 'games', pageData)
+    console.log( 'gamesgrid', resById)
+
   return (
     <div>Test</div>
   )
